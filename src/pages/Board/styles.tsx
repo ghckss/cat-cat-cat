@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const Row = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 0.5rem 0;
     .img {
         position: relative;
