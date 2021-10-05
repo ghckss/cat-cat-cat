@@ -5,6 +5,15 @@ export const Container = styled.div`
     width: 100%;
     flex-direction: column;
     margin: 1rem 0;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 `;
 
 export const Row = styled.div`

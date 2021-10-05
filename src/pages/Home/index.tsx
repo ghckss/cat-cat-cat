@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 
 import {Container, Row, DetailShow, Button} from './styles';
-import Image from 'components/Image';
 
 import {fetchList} from 'utils/api';
 
@@ -34,19 +33,42 @@ export default function Home() {
 
     const onClickButton = React.useCallback(() => setIsImageFixed(false), []);
 
+    // return (
+    //     <Container>
+    //         <Row>
+    //             {images?.map((image, index) => (
+    //                 <div key={index} className='img' onClick={() => onClickImage(image)} onMouseOver={() => onHoverImage(image)}>
+    //                     <img src={isPhone ? image : images[images.length - 1 - index]} />
+    //                 </div>
+    //             ))}
+    //         </Row>
+    //         <DetailShow>
+    //             <div className='img'>
+    //                 <img src={isPhone ? currentImage : images?.[images.length - 3]} />
+    //             </div>
+    //             <Button onClick={onClickButton}>고정 해제</Button>
+    //         </DetailShow>
+    //     </Container>
+    // );
+
     return (
         <Container>
             <Row>
-                {images &&
-                    images.map((image, index) => (
-                        <div key={index} className='img' onClick={() => onClickImage(image)} onMouseOver={() => onHoverImage(image)}>
-                            <Image src={image} />
-                        </div>
-                    ))}
+                {images?.map((image, index) => (
+                    <div key={index} className='img' onClick={() => onClickImage(image)} onMouseOver={() => onHoverImage(image)}>
+                        <picture>
+                            <source media='(min-width: 800px)' srcSet={images[images.length - 1 - index]} />
+                            <img src={image} />
+                        </picture>
+                    </div>
+                ))}
             </Row>
             <DetailShow>
                 <div className='img'>
-                    <Image src={currentImage} />
+                    <picture>
+                        <source media='(min-width: 800px)' srcSet={images?.[images.length - 3]} />
+                        <img src={currentImage} />
+                    </picture>
                 </div>
                 <Button onClick={onClickButton}>고정 해제</Button>
             </DetailShow>
